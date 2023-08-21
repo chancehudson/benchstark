@@ -8,6 +8,7 @@ export default observer(() => {
   const [traceLength, setTraceLength] = React.useState(40)
   const [registerCount, setRegisterCount] = React.useState(2)
   const [result, setResult] = React.useState([])
+  const [proving, setProving] = React.useState(false)
   const { stark } = React.useContext(state)
   return (
     <div style={{ textAlign: 'center', padding: '8px' }}>
@@ -37,7 +38,18 @@ export default observer(() => {
         </div>
       </div>
       <div style={{ height: '8px'}} />
-      <button onClick={() => setResult(stark.buildProof(traceLength, registerCount))}>build stark</button>
+      <button disabled={proving} onClick={async () => {
+        try {
+          setProving(true)
+          await new Promise(r => setTimeout(r, 10))
+          setResult(stark.buildProof(traceLength, registerCount))
+          setProving(false)
+        } catch (err) {
+          console.log(err)
+          setProving(false)
+          throw err
+        }
+      }}>{proving ? 'building...' : 'build stark'}</button>
       <div style={{ height: '8px'}} />
       <div>
         {result.map(txt => (
