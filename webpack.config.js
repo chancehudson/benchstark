@@ -7,6 +7,9 @@ const webpack = require('webpack')
 module.exports = (env, argv) => ({
   entry: ['./src/index.jsx'],
   mode: 'development',
+  experiments: {
+    asyncWebAssembly: true
+  },
   devServer: {
     port: 3000,
     historyApiFallback: true,

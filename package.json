@@ -1,5 +1,5 @@
 {
-  "name": "sudoku-stark",
+  "name": "stark-benchmark",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -11,7 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "starkstark": "vimwitch/starkstark"
+    "starkstark": "../starkjs",
+    "rstark": "../rstark/pkg"
   },
   "devDependencies": {
     "@babel/core": "^7.22.10",
